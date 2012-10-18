@@ -10,15 +10,16 @@ function bookmarklet() {
 	hsp_div.id = "hsp__div";
 	hsp_div.style.position = "absolute";
 	hsp_div.style.top = scrollPos().y + "px";
-	hsp_div.style.right = "0";
+	hsp_div.style.right = "10px";
 	hsp_div.style.zIndex = 100000;
 	var fg = div(hsp_div);
 	fg.id = "hsp__fg";
 	fg.style.backgroundColor = "#F0F0F0";
 	fg.style.zIndex = 2;
 	fg.style.width = "450px";
-	fg.style.height = "190px";
-	fg.innerHTML = '<iframe frameborder="0" id="hsp__iframe" style="width:100%;height:100%;border:solid;1px;padding:0px;margin:0px"><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>-</title></head></html></iframe>';
+	fg.style.height = "300px";
+	fg.style.opacity = "0.95";
+	fg.innerHTML = '<iframe frameborder="0" id="hsp__iframe" style="width:100%;height:100%;border:solid;1px;padding:0px;margin:0px"><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>-</title></head></html></iframe><a href="#" onclick="removeSP();">close</a>';
 	d.body.appendChild(hsp_div);
 	var msg = {title:title, url:location.href};
 	msg.selection = selection || '';
@@ -78,3 +79,8 @@ function sendFrameMessage(m) {
 }
 bookmarklet();
 })();
+function removeSP() {
+	var hspdiv = document.getElementById('hsp__div');
+	hspdiv.parentNode.removeChild(hspdiv);
+}
+
